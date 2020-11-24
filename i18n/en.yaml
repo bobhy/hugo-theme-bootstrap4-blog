@@ -7,6 +7,9 @@
 - id: recentPosts
   translation: "Recent Posts"
 
+- id: relatedPosts
+  translation: "Related Posts"
+
 - id: readMore
   translation: "Read more →"
 

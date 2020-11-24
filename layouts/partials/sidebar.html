@@ -7,7 +7,7 @@
   {{ end }}
 
   {{ if .Site.Params.sidebar }}
-      {{ partialCached "recent.html" .}}
+      {{ partial "related.html" .}}
   {{ end }}
 
   {{ with .Site.Menus.sidebar }}

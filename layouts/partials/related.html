@@ -1,0 +1,11 @@
+{{- $related := .Site.RegularPages.Related . | first (index .Site.Params.sidebar "num_related_posts" | default 5) -}}
+{{ with $related }}
+<section class="sidebar-module">
+    <h4>{{ i18n "relatedPosts" }}</h4>
+    <ol class="list-unstyled">
+    {{ range $related }}
+    <li><a href="{{.RelPermalink}}">{{.Title | markdownify }}</a></li>
+    {{ end }}
+    </ol>
+  </section>
+{{ end }}
