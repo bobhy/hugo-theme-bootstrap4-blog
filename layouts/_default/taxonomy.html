@@ -1,9 +1,15 @@
 {{ define "main" }}
-
+{{- if .Data.Terms -}}
+<h2>{{.Data.Plural | title}}</h2>
+{{- else if .Data.Singular -}}
+{{ $numPosts := len .Data.Pages }}
+<h2>{{print .Data.Singular ": " .Data.Term | title}}</h2>
+<h4>{{print $numPosts " " (i18n "post" $numPosts)}}</h4>
+{{- end -}}
 {{ $truncate := default true .Site.Params.truncate }}
 {{ range .Paginator.Pages }}
 {{ if $truncate }}
-{{ .Render "summary" }}
+{{ .Render "summary-card" }}
 {{ else }}
 {{ .Render "content" }}
 {{ end }}
