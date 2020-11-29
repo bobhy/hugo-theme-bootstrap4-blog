@@ -9,6 +9,7 @@
 {{ $truncate := default true .Site.Params.truncate }}
 {{ range .Paginator.Pages }}
 {{ if $truncate }}
+{{- /* make configurable! */ -}}
 {{ .Render "summary-card" }}
 {{ else }}
 {{ .Render "content" }}

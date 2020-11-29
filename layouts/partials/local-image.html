@@ -1,9 +1,9 @@
 {{/* idea from https://alexlakatos.com/web/2020/07/17/hugo-image-processing/ and https://laurakalbag.com/processing-responsive-images-with-hugo/, converted into partial (and shortcode) */}}
-{{/* call partial with (dict 'page' . 'img' _local_path_ 'alt' "text" ) */}}
+{{/* call partial with (dict 'page' . 'img' _local_path_ 'alt' "text" 'class' "") */}}
 {{- $args := .}}
 {{- with ($args.src) -}}
 <div>
-  <img class="img-fluid" alt="{{with $args.alt}}{{.}}{{end}}"
+  <img class="img-fluid {{$args.class}}" alt="{{with $args.alt}}{{.}}{{end}}"
   {{- with ($args.page.Resources.GetMatch $args.src) -}}
     {{- $src := . -}}
     {{- /* set image width sizes [500, 800 1200], hardcoded for now */ -}}
