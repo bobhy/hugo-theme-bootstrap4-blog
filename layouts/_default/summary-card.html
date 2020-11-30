@@ -1,26 +1,16 @@
 {{ $dateFormat := default "Mon Jan 2, 2006" (index .Site.Params "date_format") }}
-
-
-<article class="blog-post card flex-row row">
-  {{- $bodySpan := "" -}}
-  {{- if .Params.image -}}
-    {{- $bodySpan = "-8" -}}
-  <div class="col-4">
-    {{partial "local-image" (dict "page" . "src" (.Params.image) "alt" "" )}}
+{{- /* float-xs-left and other breakpoints don't work?? */ -}}
+<article class="blog-post">
+  <a href='{{ .Permalink }}'>{{partial "local-image" (dict "class" "float-left w-25 m-0 pr-3 pt-3" "page" . "src" (.Params.image) "alt" "" ) -}}</a>
+  <div class="blog-post-title" dir="auto"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></div>
+  <div class="blog-post-meta">
+    <time
+      {{ .Date.Format "2006-01-02T15:04:05Z07:00" | printf "datetime=%q" | safeHTMLAttr }}>{{ .Date.Format $dateFormat }}</time>
+    {{ i18n "authoredBy" }}
+    {{ .Params.author | default .Site.Params.author }}{{ if or (.Params.categories) (.Params.tags) }}
+    {{ i18n "postedIn" }} {{ partial "meta-terms.html" . }}{{ end }}
   </div>
-  {{- end -}}
-  <div class="col{{$bodySpan}}">
-    <header class="card-body">
-      <h2 class="blog-post-title" dir="auto"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h2>
-      <p class="blog-post-meta"><time
-          {{ .Date.Format "2006-01-02T15:04:05Z07:00" | printf "datetime=%q" | safeHTMLAttr }}>{{ .Date.Format $dateFormat }}</time>
-        {{ i18n "authoredBy" }}
-        {{ .Params.author | default .Site.Params.author }}{{ if or (.Params.categories) (.Params.tags) }}
-        {{ i18n "postedIn" }} {{ partial "meta-terms.html" . }}{{ end }}</p>
-    </header>
-    {{ .Summary }}
-    <a href='{{ .Permalink }}'>{{ i18n "readMore" }}</a>
-    <div>
+  {{ .Summary -}}
 </article> <!-- /.blog-post -->
 
 {{- /* vim: set ts=2 sw=2 et: */}}
