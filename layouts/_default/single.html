@@ -11,7 +11,7 @@
   {{- with .Params.image -}}
   "image": {
     "@type": "ImageObject",
-  {{- with $p.Resources.GetMatch . -}}
+  {{- with $p.Resources.GetMatch (printf "*%s%" .) -}}
     "url": {{.Permalink}},
     {{- /* printf "--dbg resource name %#v permalink %#v" .Name .Permalink */ -}}
     "height": "{{ .Height }}",
