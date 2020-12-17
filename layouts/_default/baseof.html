@@ -77,7 +77,9 @@
 
         </div> {{ "<!-- /.blog-main -->" | safeHTML }}
 
+        {{ block "sidebar" . }}
         {{ partial "sidebar.html" . }}
+        {{ end}}
 
       </div> {{ "<!-- /.row -->" | safeHTML }}
     </div> {{ "<!-- /.container -->" | safeHTML }}
