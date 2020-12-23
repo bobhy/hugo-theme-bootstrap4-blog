@@ -8,6 +8,13 @@
   one: "Post"
   other: "Posts"
 
+- id: project
+  one: "project"
+  other: "projects"
+
+- id: journal
+  translation: journal
+  
 - id: recentPosts
   translation: "Recent Posts"
 
