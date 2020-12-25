@@ -1,0 +1,5 @@
+{{- /* standard debug printf, attends to setting of site.Params.debug*/ -}}
+{{- if site.Params.debug -}}
+   {{print "DEBUG:" .}}
+{{- end -}}
+
