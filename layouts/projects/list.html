@@ -3,10 +3,8 @@
 {{ if (ne .Site.Params.header_visible false) }}
 <header class="blog-header">
     <div class="container">
-        <h1 class="blog-title" dir="auto">{{ .Title }}</h1>
-        <p class="lead blog-description" dir="auto">{{ .Site.Title }}</p>
-        <p>{{partial "debug.html" (slice .Site  .  "argle" "bargle")}}</p>
-        <p>{{partial "debug" "list, overridable --" (.Param "foo_variable")}}</p>        
+        <h1 class="blog-title" dir="auto"><a href="{{.CurrentSection.Permalink}}">{{ .CurrentSection.Page.Title | safeHTML}}</a></h1>
+        {{ with .CurrentSection.Page.Params.description }}<p class="lead blog-description" dir="auto">{{ . | markdownify}}</p>{{ end }}
     </div>
 </header>
 {{ end }}

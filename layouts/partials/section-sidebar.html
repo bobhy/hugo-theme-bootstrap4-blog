@@ -1,16 +1,17 @@
 {{- /* sidebar for lists (assumed to be sections) other than blog (interim)*/ -}}
 <aside class="col-sm-3 ml-auto blog-sidebar">
-    <section class="sidebar-module sidebar-module-inset">
-        <h4>{{ i18n .Type | title }}</h4>
-        <p dir="auto">{{ .Params.summary | markdownify }}</p>
-    </section>
-
     <section class="sidebar-module">
-        <h4>In this section</h4>
-        {{ printf "page type %s, section %s, kind %s" .Type .Section .Kind}}
+        <h4 class="text-muted">On this page</h4>
+        {{ .TableOfContents }}
+    </section>
+    <section class="sidebar-module">
+        <h4 class="text-muted">In this section</h4>
         <ol class="list-unstyled">
-            {{ range where .Site.Pages "Section" .Section }}
+            {{ $currentSection := .CurrentSection }}
+            {{ range .Site.Pages}}
+            {{ if $currentSection.IsAncestor .}}
             <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+            {{ end }}
             {{ end }}
         </ol>
     </section>

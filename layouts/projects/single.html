@@ -1,4 +1,14 @@
 {{ define "title" }}{{ .Title | markdownify }} | {{ .Site.Title }}{{ end }}
+{{ define "header" }}
+{{ if (ne .Site.Params.header_visible false) }}
+<header class="blog-header">
+    <div class="container">
+        <h1 class="blog-title" dir="auto"><a href="{{.CurrentSection.Permalink}}">{{ .CurrentSection.Page.Title | safeHTML}}</a></h1>
+        {{ with .CurrentSection.Page.Params.description }}<p class="lead blog-description" dir="auto">{{ . | markdownify}}</p>{{ end }}
+    </div>
+</header>
+{{ end }}
+{{ end }}
 
 {{ define "schema-dot-org" }}
 <script type="application/ld+json">
