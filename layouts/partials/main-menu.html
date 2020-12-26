@@ -1,0 +1,8 @@
+{{- /* main menu includes all sections tagged with its name */ -}}
+<nav class="nav blog-nav">
+    {{ $currentPage := . }}
+    {{ range (index .Site.Menus (.Site.Params.mainMenu | default "main")) }}
+    <a class="nav-link {{if or (eq .Page $currentPage) (.Page.IsAncestor $currentPage) }} active{{end}}"
+        href="{{ .URL | absLangURL }}" title="{{ .Title }}">{{ .Name }}</a>
+    {{ end }}
+</nav>
