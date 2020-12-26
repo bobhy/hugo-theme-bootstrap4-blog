@@ -1,0 +1,28 @@
+{{ define "title" }} {{ .Title | title}} {{ end }}
+{{ define "header" }}
+{{ if (ne .Site.Params.header_visible false) }}
+<header class="blog-header">
+    <div class="container">
+        <h1 class="blog-title" dir="auto">{{ .Title }}</h1>
+        <p class="lead blog-description" dir="auto">{{ .Site.Title }}</p>
+        <p>{{partial "debug.html" (slice .Site  .  "argle" "bargle")}}</p>
+        <p>{{partial "debug" "list, overridable --" (.Param "foo_variable")}}</p>        
+    </div>
+</header>
+{{ end }}
+{{ end }}
+
+{{ define "sidebar" }}{{ partial "section-sidebar.html" . }}{{ end}}
+
+{{ define "main" }}
+{{ $paginator := .Paginate (where .Site.RegularPages "Section" .Section) }}
+{{ range $paginator.Pages }}
+{{ .Render "content" }}
+{{ end }}
+
+{{ if or (.Paginator.HasPrev) (.Paginator.HasNext) }}
+{{ partial "pagination.html" . }}
+{{ end }}
+{{ end }}
+
+{{- /* vim: set ts=2 sw=2 et: */}}

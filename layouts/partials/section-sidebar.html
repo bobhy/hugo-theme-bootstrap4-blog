@@ -1,0 +1,18 @@
+{{- /* sidebar for lists (assumed to be sections) other than blog (interim)*/ -}}
+<aside class="col-sm-3 ml-auto blog-sidebar">
+    <section class="sidebar-module sidebar-module-inset">
+        <h4>{{ i18n .Type | title }}</h4>
+        <p dir="auto">{{ .Params.summary | markdownify }}</p>
+    </section>
+
+    <section class="sidebar-module">
+        <h4>In this section</h4>
+        {{ printf "page type %s, section %s, kind %s" .Type .Section .Kind}}
+        <ol class="list-unstyled">
+            {{ range where .Site.Pages "Section" .Section }}
+            <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+            {{ end }}
+        </ol>
+    </section>
+
+</aside><!-- /.blog-sidebar -->
