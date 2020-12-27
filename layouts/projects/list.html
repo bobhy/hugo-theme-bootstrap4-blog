@@ -15,7 +15,7 @@
 {{ define "main" }}
 {{ $paginator := .Paginate (where .Site.RegularPages "Section" .Section) }}
 {{ range $paginator.Pages }}
-{{ .Render "content" }}
+{{ .Render "summary" }}
 {{ end }}
 
 {{ if or (.Paginator.HasPrev) (.Paginator.HasNext) }}
