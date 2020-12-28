@@ -70,7 +70,6 @@
     <p class="blog-post-meta">
 {{ if not .PublishDate.IsZero }}<time {{ .Date.Format "2006-01-02T15:04:05Z07:00" | printf "datetime=%q" | safeHTMLAttr }}>{{ .Date.Format $dateFormat }}</time>{{ end }}
 {{ if or (.Params.categories) (.Params.tags) }} {{ i18n "postedIn" }} {{ partial "meta-terms.html" . }}{{ end }}</p>
-<p>{{partial "debug" (slice "single, overridable --" (.Param "foo_variable"))}}</p>
   </header>
   {{ partial "local-image.html"  (dict "page" . "src" (.Params.image) "alt" (print "Feature image for " .Name)) }}
   {{ .Content }}
