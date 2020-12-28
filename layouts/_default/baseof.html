@@ -50,6 +50,9 @@
         }
     };
     mermaid.initialize(config);
+    window.onload = function() {  // trick per: https://discourse.gohugo.io/t/use-mermaid-with-code-fences/17211
+      mermaid.init(undefined, ".language-mermaid");
+  };
 </script>
 
   {{ partial "head-custom.html" . }}
